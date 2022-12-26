@@ -1,0 +1,57 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "dependencyDashboard": true,
+  "dependencyDashboardAutoclose": true,
+  "extends": ["config:base"],
+  "packageRules": [
+    {
+      "automerge": true,
+      "groupName": "poetry/minor",
+      "matchDepTypes": ["dependencies", "dev", "types"],
+      "matchManagers": ["poetry"],
+      "matchUpdateTypes": [
+        "bump",
+        "digest",
+        "lockFileMaintenance",
+        "minor",
+        "patch",
+        "pin",
+        "rollback"
+      ],
+      "semanticCommitType": "chore"
+    },
+    {
+      "automerge": true,
+      "groupName": "yarn/minor",
+      "matchDepTypes": ["dependencies", "devDependencies"],
+      "matchManagers": ["npm"],
+      "matchUpdateTypes": [
+        "bump",
+        "digest",
+        "lockFileMaintenance",
+        "minor",
+        "patch",
+        "pin",
+        "rollback"
+      ],
+      "semanticCommitType": "chore"
+    },
+    {
+      "automerge": true,
+      "groupName": "poetry/major",
+      "matchDepTypes": ["dev", "types"],
+      "matchManagers": ["poetry"],
+      "matchUpdateTypes": ["major"],
+      "semanticCommitType": "chore"
+    },
+    {
+      "automerge": true,
+      "groupName": "yarn/major",
+      "matchDepTypes": ["devDependencies"],
+      "matchManagers": ["npm"],
+      "matchUpdateTypes": ["major"],
+      "semanticCommitType": "chore"
+    }
+  ],
+  "schedule": ["every weekend"]
+}

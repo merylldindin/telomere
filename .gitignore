@@ -1,0 +1,13 @@
+# dependencies
+.venv/
+node_modules/
+
+# yarn
+.yarn/*
+!.yarn/releases
+
+# cache
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+**/__pycache__/

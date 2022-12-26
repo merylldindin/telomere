@@ -1,0 +1,9 @@
+*
+
+# requirements
+!poetry.lock
+!pyproject.toml
+
+# telomere
+!src/
+!main.py

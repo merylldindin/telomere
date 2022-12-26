@@ -1,0 +1,29 @@
+{
+    "editor.formatOnSave": true,
+    "editor.inlineSuggest.enabled": true,
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "git.autofetch": true,
+    "isort.args": ["--profile", "black"],
+    "npm.packageManager": "yarn",
+    "python.formatting.provider": "black",
+    "python.languageServer": "Pylance",
+    "python.analysis.importFormat": "relative",
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.typeCheckingMode": "basic",
+    "python.terminal.activateEnvironment": false,
+    "workbench.startupEditor": "none",
+    "[python]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "ms-python.black-formatter",
+      "editor.codeActionsOnSave": {
+          "source.organizeImports": true
+      },
+    },
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[markdown]": {
+      "editor.defaultFormatter": null
+    }
+  }
