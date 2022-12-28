@@ -9,7 +9,7 @@ from src.models.mongodb_models import (
     MongodbReadQuery,
     MongodbUpdateQuery,
 )
-from src.services import mongodb_handler
+from src.services import mongodb_service
 from src.utils.formatters import dump_mongodb_results
 
 router = APIRouter()
@@ -20,7 +20,7 @@ async def read_one(
     query: MongodbReadQuery = Body(...), _: User = Depends(get_current_user())
 ) -> dict | None:
     return dump_mongodb_results(
-        mongodb_handler.read_one(query.collection, query.conditions)
+        mongodb_service.read_one(query.collection, query.conditions)
     )
 
 
@@ -29,7 +29,7 @@ async def read_many(
     query: MongodbReadQuery = Body(...), _: User = Depends(get_current_user())
 ) -> list[dict]:
     return dump_mongodb_results(
-        mongodb_handler.read_many(query.collection, query.conditions, limit=query.limit)
+        mongodb_service.read_many(query.collection, query.conditions, limit=query.limit)
     )
 
 
@@ -40,7 +40,7 @@ async def create_one(
     query: MongodbCreateQuery = Body(...), _: User = Depends(get_current_user())
 ) -> dict | None:
     return dump_mongodb_results(
-        mongodb_handler.create_one(query.collection, query.item)
+        mongodb_service.create_one(query.collection, query.item)
     )
 
 
@@ -51,7 +51,7 @@ async def create_many(
     query: MongodbCreateManyQuery = Body(...), _: User = Depends(get_current_user())
 ) -> list[dict]:
     return dump_mongodb_results(
-        mongodb_handler.create_many(query.collection, query.items)
+        mongodb_service.create_many(query.collection, query.items)
     )
 
 
@@ -59,51 +59,51 @@ async def create_many(
 async def update_one(
     query: MongodbUpdateQuery = Body(...), _: User = Depends(get_current_user())
 ) -> int:
-    return mongodb_handler.update_one(query.collection, query.condition, query.values)
+    return mongodb_service.update_one(query.collection, query.condition, query.values)
 
 
 @router.post("/update-many", status_code=status.HTTP_202_ACCEPTED, response_model=int)
 async def update_many(
     query: MongodbUpdateQuery = Body(...), _: User = Depends(get_current_user())
 ) -> int:
-    return mongodb_handler.update_many(query.collection, query.condition, query.values)
+    return mongodb_service.update_many(query.collection, query.condition, query.values)
 
 
 @router.post("/rename-one", status_code=status.HTTP_202_ACCEPTED, response_model=int)
 async def rename_one(
     query: MongodbUpdateQuery = Body(...), _: User = Depends(get_current_user())
 ) -> int:
-    return mongodb_handler.rename_one(query.collection, query.condition, query.values)
+    return mongodb_service.rename_one(query.collection, query.condition, query.values)
 
 
 @router.post("/rename-many", status_code=status.HTTP_202_ACCEPTED, response_model=int)
 async def rename_many(
     query: MongodbUpdateQuery = Body(...), _: User = Depends(get_current_user())
 ) -> int:
-    return mongodb_handler.rename_many(query.collection, query.condition, query.values)
+    return mongodb_service.rename_many(query.collection, query.condition, query.values)
 
 
 @router.post("/delete-one", status_code=status.HTTP_202_ACCEPTED, response_model=int)
 async def delete_one(
     query: MongodbDeleteQuery = Body(...), _: User = Depends(get_current_user())
 ) -> int:
-    return mongodb_handler.delete_one(query.collection, query.condition)
+    return mongodb_service.delete_one(query.collection, query.condition)
 
 
 @router.post("/delete-many", status_code=status.HTTP_202_ACCEPTED, response_model=int)
 async def delete_many(
     query: MongodbDeleteQuery = Body(...), _: User = Depends(get_current_user())
 ) -> int:
-    return mongodb_handler.delete_many(query.collection, query.condition)
+    return mongodb_service.delete_many(query.collection, query.condition)
 
 
 @router.delete("/collection", status_code=status.HTTP_202_ACCEPTED, response_model=None)
 async def drop_collection(
     collection: str = Query(...), _: User = Depends(get_current_user())
 ) -> None:
-    mongodb_handler.drop_collection(collection)
+    mongodb_service.drop_collection(collection)
 
 
 @router.get("/collections", response_model=list[str])
 async def list_collections(_: User = Depends(get_current_user())) -> list[str]:
-    return mongodb_handler.list_collections()
+    return mongodb_service.list_collections()

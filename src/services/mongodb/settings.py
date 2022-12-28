@@ -1,4 +1,4 @@
-from pydantic import BaseSettings, Field
+from pydantic import BaseModel, BaseSettings
 
 
 class MongodbSettings(BaseSettings):
@@ -7,10 +7,19 @@ class MongodbSettings(BaseSettings):
     user: str | None = None
     tls_file: str | None = None
     password: str | None = None
-    port: int = Field(default=27017)
+    port: int = 27017
 
     class Config:
         env_prefix = "MONGODB_"
 
 
 MONGODB_SETTINGS = MongodbSettings()
+
+
+class StrictMongodbSettings(BaseModel):
+    host: str
+    database: str
+    user: str
+    password: str
+    tls_file: str | None = None
+    port: int = 27017

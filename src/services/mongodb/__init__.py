@@ -1,13 +1,47 @@
-from urllib.parse import quote_plus
-
 import pymongo
 from bson.objectid import ObjectId
+
+from src.utils.exceptions import raise_400_exception
 
 from .settings import MONGODB_SETTINGS
 from .utils import build_host_url
 
+DEFAULT_ERROR_MESSAGE = "No MongoDB instance connected"
 
-class MongodbService:
+
+class MongodbSignature:
+    def read_one(self, _: str, __: dict | None = None) -> dict | None:
+        raise_400_exception(DEFAULT_ERROR_MESSAGE)
+
+    def read_many(self, _: str, __: dict | None = None, ___: int = 1000) -> list[dict]:
+        raise_400_exception(DEFAULT_ERROR_MESSAGE)
+
+    def create_one(self, _: str, __: dict) -> ObjectId | None:
+        raise_400_exception(DEFAULT_ERROR_MESSAGE)
+
+    def create_many(self, _: str, __: list[dict]) -> list[ObjectId]:
+        raise_400_exception(DEFAULT_ERROR_MESSAGE)
+
+    def update_one(self, _: str, __: dict, ___: dict) -> int:
+        raise_400_exception(DEFAULT_ERROR_MESSAGE)
+
+    def update_many(self, _: str, __: dict, ___: dict) -> int:
+        raise_400_exception(DEFAULT_ERROR_MESSAGE)
+
+    def delete_one(self, _: str, __: dict) -> int:
+        raise_400_exception(DEFAULT_ERROR_MESSAGE)
+
+    def delete_many(self, _: str, __: dict) -> int:
+        raise_400_exception(DEFAULT_ERROR_MESSAGE)
+
+    def drop_collection(self, _: str) -> None:
+        raise_400_exception(DEFAULT_ERROR_MESSAGE)
+
+    def list_collections(self) -> list[str]:
+        raise_400_exception(DEFAULT_ERROR_MESSAGE)
+
+
+class MongodbService(MongodbSignature):
     def __init__(self) -> None:
         self.is_undefined = any(
             value is None for value in MONGODB_SETTINGS.dict().values()

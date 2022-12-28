@@ -20,6 +20,7 @@ def catch_mysql_exceptions():
             except MYSQL_EXCEPTIONS as error:
                 if IS_DEVELOPMENT:
                     print(error)
+
                     return None
 
                 raise_400_exception(str(error))

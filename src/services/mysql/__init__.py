@@ -12,7 +12,7 @@ from .utils import (
     get_max_batch_size_from_item,
 )
 
-DEFAULT_ERROR_MESSAGE = "No instance connected"
+DEFAULT_ERROR_MESSAGE = "No MySQL instance connected"
 
 
 class MysqlSignature:
