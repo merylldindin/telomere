@@ -3,7 +3,7 @@ from bson.objectid import ObjectId
 
 from src.utils.exceptions import raise_400_exception
 
-from .settings import MONGODB_SETTINGS
+from .settings import MONGODB_SETTINGS, StrictMongodbSettings
 from .utils import build_host_url
 
 DEFAULT_ERROR_MESSAGE = "No MongoDB instance connected"
@@ -43,13 +43,11 @@ class MongodbSignature:
 
 class MongodbService(MongodbSignature):
     def __init__(self) -> None:
-        self.is_undefined = any(
-            value is None for value in MONGODB_SETTINGS.dict().values()
-        )
+        self._settings = StrictMongodbSettings(**MONGODB_SETTINGS.dict())
 
     def _connect(self) -> None:
-        self._client = pymongo.MongoClient(build_host_url(MONGODB_SETTINGS))
-        self._database = self._client[MONGODB_SETTINGS.database]
+        self._client = pymongo.MongoClient(build_host_url(self._settings))
+        self._database = self._client[self._settings.database]
 
     def read_one(self, collection: str, conditions: dict | None = None) -> dict | None:
         return self._database[collection].find_one(

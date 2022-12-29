@@ -1,22 +1,24 @@
 from urllib.parse import quote_plus
 
-from .settings import MongodbSettings
+from .settings import StrictMongodbSettings
 
 
-def build_host_url(settings: MongodbSettings) -> str | None:
-    user = f"{quote_plus(settings.user)}:{quote_plus(settings.password)}"
-    host = f"{settings.host}:{settings.port}"
-
-    tls_parameters = (
+def build_host_url(settings: StrictMongodbSettings) -> str:
+    return (
+        f"mongodb://"
+        f"{quote_plus(settings.user)}:"
+        f"{quote_plus(settings.password)}@"
+        f"{settings.host}:"
+        f"{settings.port}"
+    ) + (
         ""
         if settings.tls_file is None
         else (
-            "tls=true&"
+            f"/?"
+            f"tls=true&"
             f"tlsCAFile={settings.tls_file}&"
-            "replicaSet=rs0&"
-            "readPreference=secondaryPreferred&"
-            "retryWrites=false"
+            f"replicaSet=rs0&"
+            f"readPreference=secondaryPreferred&"
+            f"retryWrites=false"
         )
     )
-
-    return f"mongodb://" f"{user}@{host}" f"/?{tls_parameters}"

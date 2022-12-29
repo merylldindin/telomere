@@ -3,7 +3,7 @@ PYTHON_FILES = `(find . -iname "*.py" -not -path "./.venv/*")`
 
 LOCAL_PORT = 8000
 
-DOCKER_IMAGE = "merylldindin/telomere:latest"
+DOCKER_IMAGE = "merylldindin/telomere"
 
 setup: ## Install developer experience
 	yarn install
@@ -60,13 +60,13 @@ pytest-coverage: ## Run coverage report
 start: ## Start telomere FastAPI application
 	poetry run uvicorn --reload --log-level info --port $(LOCAL_PORT) main:telomere
 
-docker-build: ## Build Docker image
+build: ## Build Docker image
 	docker buildx build -t $(DOCKER_IMAGE) .
 
-docker-run: ## Run Docker image
+serve: ## Run Docker image
 	docker run -it -p $(LOCAL_PORT):5000 $(DOCKER_IMAGE)
 
-docker-push: ## Push Docker image to Dockerhub
+push: ## Push Docker image to Dockerhub
 	docker push $(DOCKER_IMAGE)
 
 help: ## Description of the Makefile commands

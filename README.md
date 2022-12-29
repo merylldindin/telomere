@@ -1,4 +1,4 @@
-# telomere - Dockerized Bastion for AWS ecosystems
+# telomere - Dockerized Bastion for AWS Ecosystems
 
 ## IDE configuration
 
