@@ -1,4 +1,4 @@
-FROM python:3.10 AS requirements
+FROM python:3.11 AS requirements
 
 WORKDIR /poetry
 
@@ -12,7 +12,7 @@ RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
 
 ##############################################################################################
 
-FROM python:3.10-slim AS telomere
+FROM python:3.11-slim AS telomere
 
 LABEL maintainer="Meryll Dindin <merylldin@gmail.com>"
 
