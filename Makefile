@@ -15,10 +15,11 @@ setup-hard: ## Install developer experience with no cache
 	make setup
 
 install: ## Install package dependencies
-	poetry install --sync --no-root
+	poetry install --sync --no-root --with dev
 
 install-hard: ## Install package dependencies from scratch
 	rm -rf .venv/
+	poetry lock --no-update
 	make install
 
 poetry-update: ## Upgrade poetry and dependencies
@@ -61,12 +62,14 @@ start: ## Start telomere FastAPI application
 	poetry run uvicorn --reload --log-level info --port $(LOCAL_PORT) main:telomere
 
 build: ## Build Docker image
-	docker buildx build -t $(DOCKER_IMAGE) .
+	docker buildx build --platform=linux/amd64 -t $(DOCKER_IMAGE) .
 
 serve: ## Run Docker image
+	make build
 	docker run -it -p $(LOCAL_PORT):5000 $(DOCKER_IMAGE)
 
 push: ## Push Docker image to Dockerhub
+	make build
 	docker push $(DOCKER_IMAGE)
 
 help: ## Description of the Makefile commands

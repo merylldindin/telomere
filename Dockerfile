@@ -32,4 +32,4 @@ COPY . /telomere
 
 EXPOSE 5000
 
-CMD ["gunicorn", "-w 3", "-k uvicorn.workers.UvicornWorker", "--bind=0.0.0.0:5000", "main:telomere" ]
+CMD ["gunicorn", "-w 1", "-k uvicorn.workers.UvicornWorker", "--bind=0.0.0.0:5000", "main:telomere" ]

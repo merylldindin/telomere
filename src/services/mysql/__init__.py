@@ -153,23 +153,23 @@ class MysqlService:
             for table in tables
         }
 
-    def list_constraints(self) -> list:
+    def list_constraints(self) -> list[dict[str, str]]:
         return self.read_many(
             f"SELECT fks.table_name AS foreign_table, \
-                fks.referenced_table_name AS primary_table, \
-                fks.constraint_name AS name \
-            FROM information_schema.referential_constraints fks \
-            JOIN information_schema.key_column_usage kcu \
-                ON fks.constraint_schema = kcu.table_schema \
-                AND fks.table_name = kcu.table_name \
-                AND fks.constraint_name = kcu.constraint_name \
+                     fks.referenced_table_name AS primary_table, \
+                     fks.constraint_name AS name \
+                FROM information_schema.referential_constraints fks \
+                    JOIN information_schema.key_column_usage kcu \
+                        ON fks.constraint_schema = kcu.table_schema \
+                            AND fks.table_name = kcu.table_name \
+                            AND fks.constraint_name = kcu.constraint_name \
             WHERE fks.constraint_schema = '{self._settings.database}' \
             GROUP BY fks.constraint_schema, \
-                fks.table_name, \
-                fks.unique_constraint_schema, \
-                fks.referenced_table_name, \
-                fks.constraint_name \
+                     fks.table_name, \
+                     fks.unique_constraint_schema, \
+                     fks.referenced_table_name, \
+                     fks.constraint_name \
             ORDER BY fks.constraint_schema, \
-                fks.table_name",
+                     fks.table_name",
             limit=None,
         )
