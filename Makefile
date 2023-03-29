@@ -7,7 +7,7 @@ DOCKER_IMAGE = "merylldindin/telomere"
 
 setup: ## Install developer experience
 	yarn install
-	yarn husky:setup
+	yarn setup
 
 setup-hard: ## Install developer experience with no cache
 	rm -rf node_modules/
