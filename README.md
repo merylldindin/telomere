@@ -1,23 +1,24 @@
-[contributors-shield]: https://img.shields.io/github/contributors/merylldindin/telomere.svg?style=for-the-badge
-[contributors-url]: https://github.com/merylldindin/telomere/graphs/contributors
-[stars-shield]: https://img.shields.io/github/stars/merylldindin/telomere.svg?style=for-the-badge
-[stars-url]: https://github.com/merylldindin/telomere/stargazers
-[issues-shield]: https://img.shields.io/github/issues/merylldindin/telomere.svg?style=for-the-badge
-[issues-url]: https://github.com/merylldindin/telomere/issues
-[license-shield]: https://img.shields.io/github/license/merylldindin/telomere.svg?style=for-the-badge
-[license-url]: https://github.com/merylldindin/telomere/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/merylldindin
-
 <a href="https://merylldindin.com">
-    <img src="https://cdn.merylldindin.com/github/telomere-thumbnail.png" alt="Telomere Logo" width="100%">
+  <img src="https://cdn.merylldindin.com/github/telomere.webp" alt="telomere" width="100%">
 </a>
 
-[![LinkedIn][linkedin-shield]][linkedin-url]
-[![Contributors][contributors-shield]][contributors-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![Apache License][license-shield]][license-url]
+<div align="center">
+  <a href="https://github.com/merylldindin/telomere/graphs/contributors" target="_blank">
+    <img src="https://img.shields.io/github/contributors/merylldindin/telomere.svg?style=for-the-badge" alt="contributors"/>
+  </a>
+
+  <a href="https://github.com/merylldindin/telomere/stargazers" target="_blank">
+    <img src="https://img.shields.io/github/stars/merylldindin/telomere.svg?style=for-the-badge" alt="stars"/>
+  </a>
+
+  <a href="https://github.com/merylldindin/telomere/issues" target="_blank">
+    <img src="https://img.shields.io/github/issues/merylldindin/telomere.svg?style=for-the-badge" alt="issues"/>
+  </a>
+
+  <a href="https://github.com/merylldindin/telomere/blob/master/LICENSE.txt" target="_blank">
+    <img src="https://img.shields.io/github/license/merylldindin/telomere.svg?style=for-the-badge" alt="license"/>
+  </a>
+</div>
 
 <div align="center">
   <p align="center">
